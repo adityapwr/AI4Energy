@@ -1,0 +1,125 @@
+{
+	"info": {
+		"_postman_id": "d6ab2fbd-b14f-441b-9f81-e3fe4b22b74b",
+		"name": "Power Grid",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GeneratorData",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"date\":\"10/01/2022\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://wrldc.in/GeneratorSchedule_data.aspx/Get_GeneratorScheduleData_state_Wise",
+					"protocol": "https",
+					"host": [
+						"wrldc",
+						"in"
+					],
+					"path": [
+						"GeneratorSchedule_data.aspx",
+						"Get_GeneratorScheduleData_state_Wise"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Flows",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"date\":\"05/03/2023\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://wrldc.in/InterRegionalLinks_Data.aspx/Get_InterRegionalLinks_Region_Wise",
+					"protocol": "https",
+					"host": [
+						"wrldc",
+						"in"
+					],
+					"path": [
+						"InterRegionalLinks_Data.aspx",
+						"Get_InterRegionalLinks_Region_Wise"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "StateWiseSchedule",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{date:\"05/03/2023\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://wrldc.in/OnlinestateTest1.aspx/GetRealTimeData_state_Wise",
+					"protocol": "https",
+					"host": [
+						"wrldc",
+						"in"
+					],
+					"path": [
+						"OnlinestateTest1.aspx",
+						"GetRealTimeData_state_Wise"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ScheduleDates",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{flag:\"1\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://wrldc.in/OnlinestateTest1.aspx/GetAllScheduleDates",
+					"protocol": "https",
+					"host": [
+						"wrldc",
+						"in"
+					],
+					"path": [
+						"OnlinestateTest1.aspx",
+						"GetAllScheduleDates"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
