@@ -10,7 +10,7 @@ load_dotenv()
 host = os.getenv("HOST")
 port = os.getenv("PORT")
 database = os.getenv("DATABASE")
-user = os.getenv("USER")
+user = os.getenv("DB_USER")
 password = os.getenv("PASSWORD")
 
 GENERATOR_COLUMNS = ["state_id", "state_name", "dec_capacity",
@@ -35,6 +35,5 @@ def load_data(table_name, column_names, data):
 if __name__ == "__main__":
     demand_data = [[0, 'Gujrat', 5513.0, 5571.0, '2018-07-02 02:41:55', 49.0, 58.0, 6910.0, 12482.0, 0.0, 0.0],
                    [0, 'Madhya Pradesh', 4928.0, 5346.0, '2018-07-02 02:41:55', 49.0, 418.0, 3722.0, 9069.0, 0.0, 0.0]]
-    generator_data = [[1, 'Korba I', 1930.0, 1930.0, 1987.0, 57.0, datetime.datetime(2018, 7, 2, 4, 43, 32)], [2, 'Korba III', 468.0, 468.0, 464.0, -4.0, datetime.datetime(2018, 7, 2, 4, 43, 32)], [
-        3, 'VSTPS-I', 940.0, 940.0, 984.0, 44.0, datetime.datetime(2018, 7, 2, 4, 43, 32)], [4, 'VSTPS-II', 942.0, 942.0, 931.0, -11.0, datetime.datetime(2018, 7, 2, 4, 43, 32)]]
+    generator_data = [[1, 'Korba I', 1930.0, 1930.0, 1987.0, 57.0, '2018-07-02 04:43:32'], [2, 'Korba III', 468.0, 468.0, 464.0, -4.0, '2018-07-02 04:43:32'], [3, 'VSTPS-I', 940.0, 940.0, 984.0, 44.0, '2018-07-02 04:43:32'], [4, 'VSTPS-II', 942.0, 942.0, 931.0, -11.0, '2018-07-02 04:43:32']]
     load_data("generator", GENERATOR_COLUMNS, generator_data)

@@ -96,37 +96,41 @@ for file_name in sorted(os.listdir("data/schedule_dates")):
     logging.info("Getting the schedule data for file: " + file_name)
     with open(f"data/schedule_dates/{file_name}") as f:
         for date in f.readlines():
+            date = date.split("-")
+            call_type = date[1].strip()
+            date = date[0]
             payload = {"date": date.strip()}
-
-            try:
-                generator_data = get_data(GENERATOR_URL, payload)
-                logging.info("Generator data fetched for date: " + date)
-                generator_data = transform_api_data(
-                    generator_data, GENERATOR_COLUMNS)
-            except Exception as e:
-                handle_error(date, "generator", e)
+            if call_type=="generator":
+                try:
+                    generator_data = get_data(GENERATOR_URL, payload)
+                    logging.info("Generator data fetched for date: " + date)
+                    generator_data = transform_api_data(
+                        generator_data, GENERATOR_COLUMNS)
+                except Exception as e:
+                    handle_error(date, "generator", e)
+                else:
+                    load_data("generator", GENERATOR_COLUMNS, generator_data)
+            elif call_type=="demand":
+                try:
+                    demand_data = get_data(DEMAND_URL, payload)
+                    logging.info("Demand data fetched for date: " + date)
+                    demand_data = transform_api_data(demand_data, DEMAND_COLUMNS)
+                except Exception as e:
+                    handle_error(date, "demand", e)
+                else:
+                    load_data("demand", DEMAND_COLUMNS, demand_data)
             else:
-                load_data("generator", GENERATOR_COLUMNS, generator_data)
+                try:
+                    interlink_data = get_data(INTERSTATE_FLOW_URL, payload)
+                    logging.info("Interlink data fetched for date: " + date)
+                    interlink_data = transform_api_data(
+                        interlink_data, INTERLINK_COLUMNS)
+                except Exception as e:
+                    handle_error(date, "interlink", e)
+                else:
+                    load_data("interlink", INTERLINK_COLUMNS, interlink_data)
 
-            try:
-                demand_data = get_data(DEMAND_URL, payload)
-                logging.info("Demand data fetched for date: " + date)
-                demand_data = transform_api_data(demand_data, DEMAND_COLUMNS)
-            except Exception as e:
-                handle_error(date, "demand", e)
-            else:
-                load_data("demand", DEMAND_COLUMNS, demand_data)
-
-            try:
-                interlink_data = get_data(INTERSTATE_FLOW_URL, payload)
-                logging.info("Interlink data fetched for date: " + date)
-                interlink_data = transform_api_data(
-                    interlink_data, INTERLINK_COLUMNS)
-            except Exception as e:
-                handle_error(date, "interlink", e)
-            else:
-                load_data("interlink", INTERLINK_COLUMNS, interlink_data)
-
-            logging.info("Data for date: " + date.strip() +
+            logging.info("Data for date: " + date.strip() + "for type" + call_type +
                          " loaded into database")
 
+logging.info("Scrapper complete")
