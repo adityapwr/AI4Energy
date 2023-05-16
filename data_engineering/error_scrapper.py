@@ -132,5 +132,6 @@ for file_name in sorted(os.listdir("data/schedule_dates")):
 
             logging.info("Data for date: " + date.strip() + "for type" + call_type +
                          " loaded into database")
+            time.sleep(5)
 
 logging.info("Scrapper complete")
